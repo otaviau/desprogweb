@@ -1,0 +1,6 @@
+[submodule "prodesweb-jobsheet1"]
+	path = prodesweb-jobsheet1
+	url = https://github.com/otaviau/prodesweb-jobsheet1
+[submodule "prodesweb-jobsheet2"]
+	path = prodesweb-jobsheet2
+	url = https://github.com/otaviau/prodesweb-jobsheet2
