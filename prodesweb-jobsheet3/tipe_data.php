@@ -24,4 +24,24 @@ echo "Bahasa Indonesia: {$nilaiBahasaIndonesia} <br>";
 echo "Rata-rata: {$rataRata} <br>";
 
 var_dump($rataRata);
+$apakahSiswalulus = true;
+$apakahSiswasudahUjian = false;
+
+var_dump($apakahSiswalulus);
+echo "<br>";
+var_dump($apakahSiswasudahUjian);
+
+$namaDepan = "Ibnu";
+$namaBelakang = "Jakaria";
+
+$namaLengkap = "{$namaDepan} {$namaBelakang}";
+$namaLengkap2 = $namaDepan . ' ' . $namaBelakang;
+
+echo "Nama Depan: {$namaDepan} <br>";
+echo 'Nama Belakang: ' . $namaBelakang . ' <br>';
+
+echo $namaLengkap;
+$listMahasiswa = ["Wahid Abdullah", "Elmo Bachtiar", "Lendis Fabri"];
+echo $listMahasiswa[0];
+
 ?>
