@@ -4,3 +4,6 @@
 [submodule "prodesweb-jobsheet2"]
 	path = prodesweb-jobsheet2
 	url = https://github.com/otaviau/prodesweb-jobsheet2
+[submodule "desprogweb"]
+	path = desprogweb
+	url = https://github.com/otaviau/prodesweb-jobsheet2
