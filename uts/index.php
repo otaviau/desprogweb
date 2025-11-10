@@ -22,9 +22,10 @@ if (!$tentang_kami) {
 }
 
 $tampil_menu = 'SELECT
+                  "gambar" AS "gambar",
                   "nama_menu" AS "nama_menu",
-                  "deskripsi_menu" AS "deskripsi_menu"
-                FROM "tb_menu"';
+                  "deskripsi" AS "deskripsi"
+                FROM "menu"';
 
 $menu = pg_query($conn, $tampil_menu);
 if (!$menu) {
@@ -121,12 +122,12 @@ if (!$menu) {
       <?php $i=1; ?>
       <?php while ($row = pg_fetch_assoc($menu)): ?>
         <div class="menu-item">
-          <img src="images/mie-ayam-original.jpeg" alt="Mie Ayam Original">
+          <img src="images/<?= htmlspecialchars($row["gambar"], ENT_QUOTES, 'UTF-8'); ?>" alt="Mie Ayam Original">
           <h4>
               <?= htmlspecialchars($row["nama_menu"], ENT_QUOTES, 'UTF-8'); ?>
           </h4>
           <p>
-              <?= htmlspecialchars($row["deskripsi_menu"], ENT_QUOTES, 'UTF-8'); ?>
+              <?= htmlspecialchars($row["deskripsi"], ENT_QUOTES, 'UTF-8'); ?>
           </p>
         </div>
       <?php $i++; endwhile; ?>
