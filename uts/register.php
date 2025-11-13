@@ -4,20 +4,29 @@ include 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $nama = $_POST['nama_lengkap'];
+    $password_plain = $_POST['password'];
+    $password_hash = password_hash($password_plain, PASSWORD_DEFAULT);
 
-    $query = "SELECT * FROM users WHERE username='$username'";
+    // Simpan ke database
+    $query = "INSERT INTO users (username, password, nama_lengkap) VALUES ('$username', '$password_hash', '$nama')";
     $result = pg_query($conn, $query);
-    $user = pg_fetch_assoc($result);
 
-    if ($user && password_verify($password, $user['password'])) {
+    if ($result) {
+        // Ambil data user yang baru saja dibuat
+        $query_user = "SELECT * FROM users WHERE username = '$username'";
+        $result_user = pg_query($conn, $query_user);
+        $user = pg_fetch_assoc($result_user);
+
+        // Set session agar langsung login
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
         $_SESSION['nama'] = $user['nama_lengkap'];
+
         header("Location: admin_beranda.php");
         exit;
     } else {
-        echo "Username atau password salah!";
+        echo "Gagal registrasi!";
     }
 }
 ?>
@@ -26,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login - Mie Ayam Lezat</title>
+  <title>Register - Mie Ayam Lezat</title>
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -121,18 +130,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
   <div class="login-box">
-    <h2>Login Mie Ayam Lezat</h2>
+    <h2>Register Mie Ayam Lezat</h2>
     <form method="POST">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" required />
 
+      <label for="username">Name</label>
+      <input type="text" id="nama_lengkap" name="nama_lengkap" required />
+
       <label for="password">Password</label>
       <input type="password" id="password" name="password" required />
-
+            
       <button type="submit">Masuk</button>
     </form>
     <p class="register-link">
-      Belum punya akun? <a href="register.php">Daftar di sini</a>
+      Sudah punya akun? <a href="login.php">Masuk di sini</a>
     </p>
   </div>
 </body>

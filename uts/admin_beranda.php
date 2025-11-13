@@ -1,3 +1,6 @@
+<?php
+include 'auth.php';
+?>
 <!doctype html>
 <html lang="en">
 
@@ -35,7 +38,7 @@
                 <div class="d-flex">
                     <ul  class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <b class="text-light" style="margin-right: 10px;">Admin</b>
+                            <b class="text-light" style="margin-right: 10px;">Selamat datang, <?php echo $_SESSION['nama']; ?>!</b>
                             <img src="images/user.jpeg" class="rounded-circle mr-5" style="width: 40px;">
                         </li>
                     </ul>
@@ -43,6 +46,7 @@
             </div>
         </div>
     </nav>
+<a class="float-end" href='logout.php'>Logout</a>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
